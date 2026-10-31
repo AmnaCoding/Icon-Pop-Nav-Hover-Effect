@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Responsive Hoverable Navbar</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="responsive.css">
+
+    <!-- Ionicons -->
+    <script type="module"
+        src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js">
+    </script>
+
+    <script nomodule
+        src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js">
+    </script>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <header class="header-content">
+
+            <!-- Logo -->
+            <div class="logo">
+                <h1>
+                    <a href="#">Logo</a>
+                </h1>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button
+                class="responsive-icons"
+                id="menu-toggle"
+                type="button"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+                aria-controls="navbar">
+
+                <ion-icon
+                    name="menu-outline"
+                    class="menu-icon">
+                </ion-icon>
+
+                <ion-icon
+                    name="close-outline"
+                    class="close-icon">
+                </ion-icon>
+
+            </button>
+
+            <!-- Navigation -->
+            <nav class="navbar" id="navbar">
+
+                <ul class="nav-list">
+
+                    <li class="nav-items">
+                        <a href="#home">
+                            <ion-icon name="home-outline"></ion-icon>
+                            <span>Home</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-items">
+                        <a href="#work">
+                            <ion-icon name="bag-outline"></ion-icon>
+                            <span>Work</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-items">
+                        <a href="#about">
+                            <ion-icon name="person-outline"></ion-icon>
+                            <span>About</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-items">
+                        <a href="#contact">
+                            <ion-icon name="mail-outline"></ion-icon>
+                            <span>Contact</span>
+                        </a>
+                    </li>
+
+                </ul>
+
+                <!-- Mobile Login Button -->
+                <div class="mobile-actions">
+                    <button type="button">Login</button>
+                </div>
+
+            </nav>
+
+            <!-- Desktop Login Button -->
+            <div class="header-actions">
+                <button type="button">Login</button>
+            </div>
+
+        </header>
+
+        <!-- Demo Content -->
+        <main class="hero-content" id="home">
+
+            <h2>Welcome to Our Website</h2>
+
+            <p>
+                A modern, responsive and user-friendly navigation experience.
+            </p>
+
+            <a href="#work" class="hero-button">Explore More</a>
+
+        </main>
+
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        const menuToggle = document.querySelector("#menu-toggle");
+        const navbar = document.querySelector("#navbar");
+        const navLinks = document.querySelectorAll(".nav-list a");
+
+        // Open and close mobile menu
+        menuToggle.addEventListener("click", () => {
+
+            const isOpen = navbar.classList.toggle("active");
+
+            menuToggle.classList.toggle("active", isOpen);
+
+            menuToggle.setAttribute("aria-expanded", isOpen);
+
+            menuToggle.setAttribute(
+                "aria-label",
+                isOpen ? "Close navigation menu" : "Open navigation menu"
+            );
+
+        });
+
+        // Close menu when a navigation link is clicked
+        navLinks.forEach((link) => {
+
+            link.addEventListener("click", () => {
+
+                navbar.classList.remove("active");
+                menuToggle.classList.remove("active");
+
+                menuToggle.setAttribute("aria-expanded", "false");
+
+                menuToggle.setAttribute(
+                    "aria-label",
+                    "Open navigation menu"
+                );
+
+            });
+
+        });
+
+        // Close menu when Escape key is pressed
+        document.addEventListener("keydown", (event) => {
+
+            if (event.key === "Escape") {
+
+                navbar.classList.remove("active");
+                menuToggle.classList.remove("active");
+
+                menuToggle.setAttribute("aria-expanded", "false");
+
+                menuToggle.setAttribute(
+                    "aria-label",
+                    "Open navigation menu"
+                );
+
+            }
+
+        });
+
+        // Reset mobile menu when switching back to desktop
+        window.addEventListener("resize", () => {
+
+            if (window.innerWidth > 768) {
+
+                navbar.classList.remove("active");
+                menuToggle.classList.remove("active");
+
+                menuToggle.setAttribute("aria-expanded", "false");
+
+                menuToggle.setAttribute(
+                    "aria-label",
+                    "Open navigation menu"
+                );
+
+            }
+
+        });
+    </script>
+
+</body>
+</html>
